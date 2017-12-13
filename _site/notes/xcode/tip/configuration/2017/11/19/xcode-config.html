@@ -1,0 +1,30 @@
+<p>By default Xcode places all of its settings in the project’s <code class="highlighter-rouge">.xcodeproj</code> bundle’s <code class="highlighter-rouge">project.pbxproj</code> file. When starting out this is fine, but over time it becomes a problem. This file’s markup is like a <code class="highlighter-rouge">plist</code>. Frequently over the course of your development you will need to change some values. Since Xcode manages this file it is in control of the order of the values and the format. Changes over time can be difficult to track because of this. If you use <code class="highlighter-rouge">git blame</code> to see git comments on why a setting is set it can be difficult to see why.</p>
+
+<h2 id="no-descriptions">No descriptions</h2>
+
+<p>Another issue is that there are no comments for why the setting is changed from it’s default value. A setting may have to be changed for supporting 3rd party components or for specific features. Not having a way to document and describe this will cause trouble if in the future a developer is looking to update the setting. Every setting overriding the default value needs to have a comment.</p>
+
+<p>Also, it may be useful to define user-defined settings. These custom settings are used in your project or your builds. Not having a clear way to describe it’s use and how it should be updated is a problem.</p>
+
+<p>Every setting needs to have a reason. In code we have comments and in the worst case scenario we can use commit messages. But when the settings are in the project we can’t</p>
+
+<h2 id="projectpbxproj-conflicts"><code class="highlighter-rouge">project.pbxproj</code> conflicts</h2>
+
+<p>Even if you are a single developer team working on a project merge conflicts can come up anytime you branch or fork a project. On multiple person teams you will definitely get merge conflicts.</p>
+
+<p>Merge conflicts are best resolved if you know the markup of the file. Often merge conflicts in the <code class="highlighter-rouge">project.pbxproj</code> file are difficult to resolve. Worse is the indeterminate nature of the order of items in the file.</p>
+
+<h2 id="no-shared-settings">No shared settings</h2>
+
+<p>Most projects start out with a single target, and only two schemes (debug and release). That’s fine but eventually you will grow your project. By having shared settings adding additional schemes and targets is easier.</p>
+
+<h2 id="getting-started">Getting started</h2>
+
+<p>The goal is to have no settings in the project file.</p>
+
+<p>Create a group in your project and name it <code class="highlighter-rouge">Config</code>. Right click on the group and select <code class="highlighter-rouge">New File</code> then select a <code class="highlighter-rouge">Configuration Settings File</code>. Name this file <code class="highlighter-rouge">Shared</code>.</p>
+
+<h2 id="copy-shared-settings">Copy shared settings</h2>
+
+<p>SDKROOT = iphoneos</p>
+
