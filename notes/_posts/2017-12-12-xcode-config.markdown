@@ -13,24 +13,24 @@ Another issue is that there are no comments for why the setting is changed from 
 
 Also, it may be useful to define user-defined settings. These custom settings are used in your project or your builds. Not having a clear way to describe it's use and how it should be updated is a problem.
 
-Every setting needs to have a reason. In code we have comments and in the worst case scenario we can use commit messages. But when the settings are in the project we can't 
+Every setting needs to have a reason. In code we have comments and in the worst case scenario we can use commit messages. But when the settings are in the project we can't.
 
 project.pbxproj conflicts
 ---------------------------
 
-Even if you are a single developer team working on a project merge conflicts can come up anytime you branch or fork a project. On multiple person teams you will definitely get merge conflicts. 
+Even if you are a single developer team working on a project, merge conflicts can come up anytime you branch or fork a project. On multiple person teams you will definitely get merge conflicts. Typically this occurs when adding source files, or changing any of the project settings. 
 
-Merge conflicts are best resolved if you know the markup of the file. Often merge conflicts in the `project.pbxproj` file are difficult to resolve. Worse is the indeterminate nature of the order of items in the file.
+Merge conflicts are best resolved if you know the markup of the file. Often merge conflicts in the `project.pbxproj` file are difficult to resolve since the markup is difficult to understand and is undocumented. 
 
 No shared settings
 ------------------
 
-Most projects start out with a single target, and only two schemes (debug and release). That's fine but eventually you will grow your project. By having shared settings adding additional schemes and targets is easier. 
+Most projects start out with a single target, and only two schemes (debug and release). That's fine but eventually you will grow your project. By having shared settings adding additional schemes and targets is easier since they all can inherit the settings you share. 
 
 Getting started
 ---------------
 
-The goal is to move all settings defined in the project file and move them into the flat config files.
+The goal is to move all settings defined in the project file and move them into the flat config files. Xcode config files are just plane text files with a flat structure of `<key> = <value>` with a file extension of `.xcconfig`.
 
 Create a group in your project and name it `Config`. Right click on the group and select `New File` then select a `Configuration Settings File`. Name this file `Shared`. 
 
@@ -39,6 +39,8 @@ Next you should create a config file for each scheme you have in your project. I
 In these target config files we want to import the shared config file with the line:
 
 `#include "Shared.xcconfig"`
+
+This is how we can move all our common settings into one file and have each scheme inherit those settings. Includes here work very similar to C include statements. Easentially it works by placing those settings in the file it is included in.
 
 Use configs
 -----------
