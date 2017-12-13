@@ -82,8 +82,13 @@ Moving forward
 
 Now whenever there is a new version of Xcode and the defaults change or new settings are added with initial values you will know by doing these exact same steps above discover them and move them to the appropriate configuration file.
 
-Shared.xcconfig
----------------
+Default settings as of Xcode 9.2
+--------------------------------
+
+Below are the state of changed settings applied by default in Xcode 9.2. 
+
+### Shared.xcconfig
+
 ```
 SDKROOT = iphoneos
 COPY_PHASE_STRIP = NO
@@ -135,8 +140,8 @@ ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
 SWIFT_VERSION = 4.0
 ```
 
-Debug.xcconfig
---------------
+### Debug.xcconfig
+
 ```
 #include "Shared.xcconfig"
 
@@ -150,8 +155,8 @@ SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG
 MTL_ENABLE_DEBUG_INFO = YES
 ```
 
-Release.xcconfig
-----------------
+### Release.xcconfig
+
 ```
 #include "Shared.xcconfig"
 
